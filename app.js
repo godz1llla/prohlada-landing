@@ -183,4 +183,43 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load saved or default language
     const savedLang = localStorage.getItem('preferredLang') || 'ru';
     setLanguage(savedLang);
+
+    // --- 5. DARK/LIGHT THEME SWITCHER ---
+    const themeToggleBtn = document.getElementById('themeToggle');
+    
+    function setTheme(theme) {
+        document.body.setAttribute('data-theme', theme);
+        localStorage.setItem('preferredTheme', theme);
+        
+        // Update icon dynamically
+        if (themeToggleBtn) {
+            const icon = themeToggleBtn.querySelector('i');
+            if (icon) {
+                if (theme === 'dark') {
+                    icon.className = 'fa-solid fa-sun';
+                } else {
+                    icon.className = 'fa-solid fa-moon';
+                }
+            }
+        }
+    }
+    
+    function toggleTheme() {
+        const currentTheme = document.body.getAttribute('data-theme') || 'light';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+    }
+    
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', toggleTheme);
+    }
+    
+    // Initialize theme based on preference, localStorage, or system media query
+    const savedTheme = localStorage.getItem('preferredTheme');
+    if (savedTheme) {
+        setTheme(savedTheme);
+    } else {
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(systemPrefersDark ? 'dark' : 'light');
+    }
 });
