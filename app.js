@@ -3,6 +3,9 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Enable scroll reveals styling
+    document.documentElement.classList.add('js-enabled');
+
     // --- 1. CUSTOM CURSOR FOLLOWER ---
     const cursor = document.getElementById('cursorFollower');
     
@@ -51,4 +54,21 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // --- 3. SCROLL REVEAL ANIMATIONS ---
+    const revealElements = document.querySelectorAll('.reveal');
+    
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target); // Stop observing once animated
+            }
+        });
+    }, {
+        threshold: 0.15, // Trigger when 15% of the element is visible
+        rootMargin: '0px 0px -50px 0px' // Trigger slightly before it fully enters viewport
+    });
+    
+    revealElements.forEach(el => revealObserver.observe(el));
 });
