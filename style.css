@@ -461,9 +461,7 @@ body {
     margin-bottom: 0.5rem;
 }
 .iframe-container iframe {
-    height: 50vh !important;
-    max-height: 380px;
-    min-height: 250px;
+    height: 550px !important;
     border: none;
     width: 100%;
     background: transparent;
@@ -907,7 +905,7 @@ body {
         width: 100%;
     }
     .iframe-container iframe {
-        height: 300px !important;
+        height: 480px !important;
     }
     
     /* Biography Stack Order and Straight Photo */
