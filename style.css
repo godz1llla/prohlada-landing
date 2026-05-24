@@ -387,7 +387,7 @@ body {
 
 /* --- COMMON SECTION STYLING --- */
 .section-padding {
-    padding: 8rem 2rem;
+    padding: 150px 20px;
     border-bottom: var(--border-width) solid var(--color-text);
 }
 .section-container {
@@ -430,33 +430,50 @@ body {
     background-size: 700px;
     background-repeat: repeat;
     background-blend-mode: multiply;
-    height: 100dvh;
-    position: sticky;
-    top: 0;
+    min-height: 100vh;
+    height: auto;
+    position: relative;
     z-index: 20;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
     box-sizing: border-box;
     overflow: hidden;
 }
+.music-section .section-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 .music-section .section-title {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 0;
 }
 .iframe-container {
     max-width: 800px;
-    margin: 0 auto;
     width: 100%;
+    margin-bottom: 0.5rem;
+}
+.iframe-container iframe {
+    height: 50vh !important;
+    max-height: 380px;
+    min-height: 250px;
+    border: none;
+    width: 100%;
+    background: transparent;
 }
 .releases-cta {
-    margin-top: 2rem;
+    margin-top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.25rem;
+    gap: 1rem;
 }
 .cta-label {
     font-family: var(--font-alt-heading);
@@ -503,17 +520,14 @@ body {
     border-top: var(--border-width) solid var(--color-text);
     border-bottom: var(--border-width) solid var(--color-text);
     overflow: hidden;
-    padding: 0.75rem 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    transform: rotate(-1deg);
-    width: 110%;
-    margin-left: -5%;
-    z-index: 30;
-    position: absolute;
-    bottom: 0;
-    box-shadow: 0px -5px 20px rgba(0,0,0,0.15);
+    padding: 1.5rem 0;
+    display: block;
+    width: 100%;
+    position: relative;
+    z-index: 20;
+    margin: 0;
+    transform: none;
+    box-shadow: none;
 }
 .marquee-direction-forward, .marquee-direction-reverse {
     display: flex;
@@ -548,15 +562,14 @@ body {
     background-size: 700px;
     background-repeat: repeat;
     background-blend-mode: multiply;
-    height: 100dvh;
-    position: sticky;
-    top: 0;
-    z-index: 30;
+    min-height: 100vh;
+    height: auto;
+    position: relative;
+    z-index: 20;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
     box-sizing: border-box;
 }
 .about-grid {
@@ -651,12 +664,11 @@ body {
     background-repeat: repeat;
     background-blend-mode: multiply;
     color: #ffffff;
-    padding: 2rem;
     border-bottom: none;
-    height: 100dvh;
-    position: sticky;
-    top: 0;
-    z-index: 40;
+    min-height: 100vh;
+    height: auto;
+    position: relative;
+    z-index: 20;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -885,20 +897,65 @@ body {
     }
     
     .section-title {
-        font-size: 2.6rem;
+        font-size: 2.2rem !important;
     }
     
-    /* Hide portrait on mobile to guarantee text fits vertically in 100dvh snapping */
+    /* Scroll space in player container for mobile fingers */
+    .iframe-container {
+        padding: 0 15px;
+        box-sizing: border-box;
+        width: 100%;
+    }
+    .iframe-container iframe {
+        height: 300px !important;
+    }
+    
+    /* Biography Stack Order and Straight Photo */
+    .about-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+    }
     .about-image-wrapper {
-        display: none;
+        display: flex !important;
+        order: -1;
+        width: 100%;
+        justify-content: center;
+    }
+    .grainy-photo-frame {
+        transform: none !important;
+        width: 100%;
+        max-width: 320px;
+        box-sizing: border-box;
+    }
+    .about-image {
+        height: 320px;
+    }
+    .photo-tape-overlay {
+        display: none !important;
+    }
+    
+    /* Grid platform buttons so text doesn't wrap awkwardly */
+    .platform-buttons-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        width: 100%;
+    }
+    .platform-btn {
+        width: 100%;
+        padding: 0.85rem 0.5rem;
+        font-size: 0.75rem;
+        justify-content: center;
+        box-sizing: border-box;
     }
     
     .about-story {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
     .about-quote {
         font-size: 1.05rem;
-        margin: 1rem 0;
+        margin: 1.5rem 0;
     }
 
     .huge-social-link {
@@ -914,31 +971,5 @@ body {
         flex-direction: column;
         gap: 1rem;
         text-align: center;
-    }
-}
-
-/* Landscape/Short Screen Adjustments for Snapping */
-@media (max-height: 750px) {
-    .section-title {
-        font-size: 2.2rem;
-        margin-bottom: 0.25rem;
-    }
-    .section-subtitle {
-        margin-bottom: 1.5rem;
-    }
-    .hero-logo-wrapper {
-        max-width: 450px;
-        margin-bottom: 1rem;
-    }
-    .music-section .iframe-container iframe {
-        height: 260px !important;
-    }
-    .about-story p {
-        font-size: 0.85rem;
-        margin-bottom: 0.5rem;
-    }
-    .about-quote {
-        font-size: 0.95rem;
-        margin: 0.5rem 0;
     }
 }
